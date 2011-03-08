@@ -1,5 +1,4 @@
 #-*- coding: utf-8 -*-
-from shop.models.productmodel import Product
 from shop.views import ShopDetailView
 from shop_simplecategories.models import Category
 
@@ -13,7 +12,7 @@ class CategoryDetailView(ShopDetailView):
     
     def get_context_data(self, **kwargs):
         ctx = super(CategoryDetailView, self).get_context_data(**kwargs)
-        product_list = Product.objects.active().filter(category=self.object)
+        product_list = self.object.products.filter(active=True)
         if product_list:
             ctx.update({'product_list':product_list})
         return ctx
