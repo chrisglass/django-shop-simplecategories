@@ -16,7 +16,8 @@ class Category(models.Model):
     parent_category = models.ForeignKey('self', related_name="children",
                                         null=True, blank=True)
     
-    products = models.ManyToManyField(Product, related_name='categories')
+    products = models.ManyToManyField(Product, related_name='categories',
+                                      blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "categories"
