@@ -3,6 +3,10 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from shop.models.productmodel import Product
 
+class CategoryManager(models.Manager):
+    def root_categories(self):
+        return self.filter(parent_category__is_null=True)
+
 class Category(models.Model):
     '''
     This should be a node in a tree (mptt?) structure representing categories
@@ -18,6 +22,8 @@ class Category(models.Model):
     
     products = models.ManyToManyField(Product, related_name='categories',
                                       blank=True, null=True)
+
+    objects = CategoryManager()
 
     class Meta:
         verbose_name_plural = "categories"
