@@ -5,7 +5,7 @@ from shop.models.productmodel import Product
 
 class CategoryManager(models.Manager):
     def root_categories(self):
-        return self.filter(parent_category__is_null=True)
+        return self.filter(parent_category__isnull=True)
 
 class Category(models.Model):
     '''
