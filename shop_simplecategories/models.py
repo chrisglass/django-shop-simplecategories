@@ -2,10 +2,12 @@
 from django.core.urlresolvers import reverse
 from django.db import models
 from shop.models.productmodel import Product
+from django.utils.translation import ugettext_lazy as _
 
 class CategoryManager(models.Manager):
     def root_categories(self):
         return self.filter(parent_category__isnull=True)
+
 
 class Category(models.Model):
     '''
@@ -15,19 +17,27 @@ class Category(models.Model):
     that are not in a tree structure). The display logic should be handle on a
     per-site basis
     '''
+
+    class Meta(object):
+        verbose_name = _("category")
+        verbose_name_plural = _("categories")
+        ordering = ['order']
+
     name = models.CharField(max_length=255)
     slug = models.SlugField()
-    parent_category = models.ForeignKey('self', related_name="children",
-                                        null=True, blank=True)
-    
+    parent_category = models.ForeignKey('self',
+                                        related_name="children",
+                                        null=True, blank=True,
+                                        verbose_name=_('Parent category'),
+                                        )
+
     products = models.ManyToManyField(Product, related_name='categories',
-                                      blank=True, null=True)
-
+                                      blank=True, null=True,
+                                      verbose_name=_('Products'),
+                                      )
+    order = models.IntegerField(verbose_name=_('Ordering'), default=0)
     objects = CategoryManager()
-
-    class Meta:
-        verbose_name_plural = "categories"
-
+    
     def __unicode__(self):
         return self.name
 
