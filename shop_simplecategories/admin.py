@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from django.db import models
 from django.contrib import admin
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from shop_simplecategories.models import Category
@@ -33,4 +34,14 @@ class ProductWithCategoryForm(forms.ModelForm):
     return product
 
 
-admin.site.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+  prepopulated_fields = {"slug": ("name",)}
+  formfield_overrides = {
+    models.ManyToManyField: {'widget': FilteredSelectMultiple(
+      verbose_name=_('products'),
+      is_stacked=False
+      )},
+  }
+
+
+admin.site.register(Category, CategoryAdmin)
