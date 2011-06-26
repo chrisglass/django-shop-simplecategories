@@ -42,6 +42,7 @@ class CategoryAdmin(admin.ModelAdmin):
       is_stacked=False
       )},
   }
+  list_display = ['name', 'slug', 'parent_category', 'order',]
 
 
 admin.site.register(Category, CategoryAdmin)
