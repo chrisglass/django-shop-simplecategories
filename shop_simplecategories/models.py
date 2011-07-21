@@ -24,7 +24,7 @@ class Category(models.Model):
         ordering = ['order']
 
     name = models.CharField(max_length=255)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     parent_category = models.ForeignKey('self',
                                         related_name="children",
                                         null=True, blank=True,
