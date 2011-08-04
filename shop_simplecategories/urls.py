@@ -9,10 +9,7 @@ urlpatterns = patterns('',
     # Categories
     url(r'^$',
         ShopListView.as_view(model=Category),
-        name='category_list'
-        ),
+        name='category_list'),
     url(r'^(?P<slug>[0-9A-Za-z-_.//]+)/$',
         CategoryDetailView.as_view(),
-        name='category_detail'
-        ),
-)
+        name='category_detail'))
