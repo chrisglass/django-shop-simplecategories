@@ -10,10 +10,11 @@ from ..templatetags.shop_simplecategories_tags import RootCategoryTag
 
 class RootCategoryTagTestCase(TestCase):
     def setUp(self):
-        Category.objects.create(name='Parent1')
-        Category.objects.create(name='Parent2')
-        Category.objects.create(name='Parent2', parent_category_id=1)
-            
+        Category.objects.create(name='Parent1', slug='parent1')
+        Category.objects.create(name='Parent2', slug='parent2')
+        Category.objects.create(name='Parent3', slug='parent3',
+                                parent_category_id=1)
+
     def test01_should_only_return_parent_categories(self):
         tag = RootCategoryTag(DummyParser(), DummyTokens())
         result = tag.get_context({})

@@ -4,6 +4,7 @@ from django.db import models
 from shop.models.productmodel import Product
 from django.utils.translation import ugettext_lazy as _
 
+
 class CategoryManager(models.Manager):
     def root_categories(self):
         return self.filter(parent_category__isnull=True)
@@ -37,7 +38,7 @@ class Category(models.Model):
                                       )
     order = models.IntegerField(verbose_name=_('Ordering'), default=0)
     objects = CategoryManager()
-    
+
     def __unicode__(self):
         return self.name
 
@@ -52,4 +53,3 @@ class Category(models.Model):
 
     def get_child_categories(self):
         return Category.objects.filter(parent_category=self)
-
