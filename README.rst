@@ -2,13 +2,14 @@
 Django SHOP simple categories
 ==============================
 
-This companion application to django-SHOP provides an example of how shop deployers could implement a simple
-category system.
+This companion application to django-SHOP provides an example of how shop
+deployers could implement a simple category system.
 
 It is perfectly usable as a simple category system.
 
-In basic setup, you can select products on category admin page. If you want to set categories in product admin page,
-subclass `ProductWithCategoryForm`, set `Meta` option `model` to your product model, and set this form as your product
+In basic setup, you can select products on category admin page. If you want to
+set categories in product admin page, subclass `ProductWithCategoryForm`, set
+`Meta` option `model` to your product model, and set this form as your product
 form::
 
     from shop_simplecategories.admin import ProductWithCategoryForm
@@ -28,5 +29,14 @@ outputs all root categories for you::
 
     <ul>{% show_root_categories %}</ul>
 
-If you want to manipulate the output of that template tag, just override the template 
-``shop_simplecategories/show_root_categories.html``
+If you want to manipulate the output of that template tag, just override the
+template ``shop_simplecategories/show_root_categories.html``
+
+Testing
+========
+
+If you want to run the testsuite make sure you have a virtual environment that
+includes django and django-shop and run::
+
+  cd shop_simplecategories/tests/
+  ./runtests.py
