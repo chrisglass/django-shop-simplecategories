@@ -1,10 +1,10 @@
 {% for category in categories %}
-	<li>
+	<li id="shop_category_{{ category.id }}">
 		<a href="{{ category.get_absolute_url }}">{{ category.name }}</a> 
 		{% if category.get_child_categories %}
 		<ul>
 			{% for child_category in category.get_child_categories %}
-			<li>
+			<li id="shop_category_{{ category.id }}_{{ child_category.id }}">
 				<a href="{{ child_category.get_absolute_url }}">{{ child_category.name }}</a>
 			</li>
 			{% endfor %}
@@ -12,4 +12,3 @@
 		{% endif %}
 	</li>
 {% endfor %}
-

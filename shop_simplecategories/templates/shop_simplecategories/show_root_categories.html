@@ -1,5 +1,5 @@
 {% for category in categories %}
-  <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+  <li id="shop_category_{{ category.id }}"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
 {% endfor %}
 
 

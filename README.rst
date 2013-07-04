@@ -22,15 +22,23 @@ form::
         form = ProductForm
 
 
-For your convenience we have added a templatetag ``show_root_categories`` that 
-outputs all root categories for you::
+For your convenience we have added the templatetags ``show_root_categories`` and 
+``show_root_with_child_categories`` for you. The first will outputs all root 
+categories and the second one outputs all root categories with it's child (if present)::
 
     {% load shop_simplecategories_tags %}
 
     <ul>{% show_root_categories %}</ul>
+	
+or
+
+    <ul>{% show_root_with_child_categories %}</ul>
+
 
 If you want to manipulate the output of that template tag, just override the
-template ``shop_simplecategories/show_root_categories.html``
+templates ``shop_simplecategories/show_root_categories.html`` and/or  
+``shop_simplecategories/show_root_with_child_categories.html`` .
+
 
 Testing
 ========
