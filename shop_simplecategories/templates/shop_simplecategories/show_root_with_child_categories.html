@@ -2,16 +2,13 @@
 	<li>
 		<a href="{{ category.get_absolute_url }}">{{ category.name }}</a> 
 		{% if category.get_child_categories %}
-		&#9660;
-		<div>
-			<ul>
-				{% for child_category in category.get_child_categories %}
-				<li>
-					<a href="{{ child_category.get_absolute_url }}">{{ child_category.name }}</a>
-				</li>
-				{% endfor %}
-			</ul>
-		</div>
+		<ul>
+			{% for child_category in category.get_child_categories %}
+			<li>
+				<a href="{{ child_category.get_absolute_url }}">{{ child_category.name }}</a>
+			</li>
+			{% endfor %}
+		</ul>
 		{% endif %}
 	</li>
 {% endfor %}
