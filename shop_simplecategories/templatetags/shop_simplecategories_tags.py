@@ -15,3 +15,14 @@ class RootCategoryTag(InclusionTag):
         return {'categories': Category.objects.root_categories(),}
 
 register.tag(RootCategoryTag)
+
+
+
+class RootWithChildCategoryTag(InclusionTag):
+    template = 'shop_simplecategories/show_root_with_child_categories.html'
+    name = 'show_root_with_child_categories'
+
+    def get_context(self, context):
+        return {'categories': Category.objects.root_categories(),}
+
+register.tag(RootWithChildCategoryTag)
